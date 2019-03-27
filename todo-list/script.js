@@ -117,16 +117,18 @@ function getTodo() {
 			for (i = 0; i < suppr.length; i++) {
 				suppr[i].addEventListener('click', function() {
 					var id = $(this).data('id');
-					$.ajax({
-						url: 'donnes.php',
-						data: {
-							supprimer: id
-						},
-						success: function(data) {
-							tableElement.innerHTML = '';
-							getTodo();
-						}
-					});
+					if (confirm('sure ?')) {
+						$.ajax({
+							url: 'donnes.php',
+							data: {
+								supprimer: id
+							},
+							success: function(data) {
+								tableElement.innerHTML = '';
+								getTodo();
+							}
+						});
+					}
 				});
 			}
 		}
